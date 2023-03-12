@@ -1,6 +1,6 @@
-export const getDisplayMode = (state: any): string => state.AppProcess.calculatorDisplayMode;
-export const getCanvasDisplayMode = (state: any): string => state.AppProcess.canvasDisplayMode;
+import {CalculatorModeType, RootState} from "../../types/state";
 
-export const getDraggablePosition = (state: any): boolean => state.AppProcess.isDraggableInsideCanvas;
-    //TODO Убрать any
-export const getCalculatorElements = (state: any): string[] | [] => state.AppProcess.elementsInCalculator;
+import {NameSpace} from "../../const";
+
+export const getCalculatorDisplayMode = (state: RootState): CalculatorModeType => state[NameSpace.App].calculatorDisplayMode;
+

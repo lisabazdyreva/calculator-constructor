@@ -1,20 +1,37 @@
 import React from 'react';
 
-import CalculatorComponents from '../calculator-components/calculator-components';
+import CalculatorComponents from '../calculator-components';
 import DropArea from '../drop-area/drop-area';
-import CalculatorCreated from '../calculator-components/calculator-created';
+import CalculatorCreated from '../calculator-created';
 
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {getCalculatorElements, getDisplayMode,} from '../../store/process/selectors';
-import {setElement} from '../../store/process/process';
+
+import {getCalculatorDisplayMode} from '../../store/process/selectors';
+import {setElement} from '../../store/canvas/canvas';
+import {getCalculatorElements} from '../../store/canvas/selectors';
+import {CalculatorElementsNameType} from "../../types/state";
+
+import {CalculatorMode} from "../../const";
 
 const CalculatorContent = () => {
-  let idPreSet: string;
+  let idPreSet: CalculatorElementsNameType;
 
   const dispatch = useAppDispatch();
 
-  const calculatorMode = useAppSelector(getDisplayMode);
+  const calculatorDisplayMode = useAppSelector(getCalculatorDisplayMode);
   const calculatorElements = useAppSelector(getCalculatorElements);
+
+  const removeBorder = (element: Element) => {
+    if (element.classList.contains('border-bottom')) {
+      element.classList.remove('border-bottom');
+    }
+  };
+
+  const addBorder = (element: Element) => {
+    if (!element.classList.contains('border-bottom')) {
+      element.classList.add('border-bottom');
+    }
+  };
 
   const onDragLeaveHandler = (evt: React.DragEvent) => {
     const currentTarget = evt.currentTarget as HTMLElement;
@@ -22,36 +39,63 @@ const CalculatorContent = () => {
     if (currentTarget.classList.contains('droppable-canvas--active')) {
       currentTarget.classList.remove('droppable-canvas--active')
     }
+
+    if (currentTarget.classList.contains('calculator--canvas-full')) {
+      const wrapper = currentTarget.children[currentTarget.children.length - 1];
+      removeBorder(wrapper.children[wrapper.children.length - 1]);
+    }
   };
 
   const onDragOverHandler = (evt: React.DragEvent) => {
-    const currentTarget = evt.currentTarget as HTMLElement;
     evt.preventDefault();
+    if (idPreSet) {
+      const currentTarget = evt.currentTarget as HTMLElement;
 
-    if (currentTarget.classList.contains('calculator--canvas-empty')) {
-      currentTarget.classList.add('droppable-canvas--active')
+      if (currentTarget.classList.contains('calculator--canvas-empty')) {
+        currentTarget.classList.add('droppable-canvas--active')
+      }
+
+      if (currentTarget.classList.contains('calculator--canvas-full')) {
+        const wrapper = currentTarget.children[currentTarget.children.length - 1];
+        addBorder(wrapper.children[wrapper.children.length - 1]);
+      }
     }
   };
 
   const onDropHandler = (evt: React.DragEvent) => {
-    evt.preventDefault();
+    const currentTarget = evt.currentTarget as HTMLElement;
 
-    dispatch(setElement(idPreSet));
+    if (idPreSet) {
+      evt.preventDefault();
+
+      if (currentTarget.classList.contains('calculator--canvas-full')) {
+        const wrapper = currentTarget.children[currentTarget.children.length - 1];
+        removeBorder(wrapper.children[wrapper.children.length - 1]);
+      }
+
+      dispatch(setElement(idPreSet));
+    }
+
   };
 
-  const setElementId = (id: string) => {
+  const setElementId = (id: CalculatorElementsNameType) => {
     idPreSet = id;
   };
 
-  const calculatorClassname = `calculator${calculatorMode === 'active' ? ' calculator--active ' : ''}${calculatorMode === 'edit' && !calculatorElements.length ? ' calculator--canvas-empty ' : ''} ${calculatorMode === 'edit' && calculatorElements.length ? ' calculator--canvas-full ' : ''}`;
+  const activeClass = calculatorDisplayMode === CalculatorMode.Active ? ' calculator--active ' : '';
+
+  const editEmptyClass = calculatorDisplayMode === CalculatorMode.Edit && !calculatorElements.length ? ' calculator--canvas-empty ' : '';
+  const editFullClass = calculatorDisplayMode === CalculatorMode.Edit && calculatorElements.length ? ' calculator--canvas-full ' : '';
+
+  const calculatorClassname = `calculator${activeClass}${editEmptyClass}${editFullClass}`;
 
   return (
-    <div className="calculator-content main__calculator-content">{/* <!-- todo calculator-content--active calculator-content--edit-->*/}
+    <div className="calculator-content main__calculator-content">
       <CalculatorComponents setElementId={setElementId} />
       <div className="calculator-wrapper">
-        <div className={calculatorClassname} onDragLeave={onDragLeaveHandler} onDragOver={onDragOverHandler} onDrop={onDropHandler}>{/*<!-- calculator--canvas-full calculator--canvas-empty  -->*/}
+        <div className={calculatorClassname} onDragLeave={onDragLeaveHandler} onDragOver={onDragOverHandler} onDrop={onDropHandler}>
           <DropArea />
-          <CalculatorCreated/>
+          <CalculatorCreated />
         </div>
       </div>
     </div>

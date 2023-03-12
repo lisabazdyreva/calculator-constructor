@@ -1,37 +1,38 @@
-import {AppCalculations} from '../../types/state';
 import {createSlice} from '@reduxjs/toolkit';
+
+import {AppCalculations} from '../../types/state';
+import {NameSpace, OperatorsValue} from "../../const";
 
 export const initialStateApp: AppCalculations = {
   firstOperand: '',
-  operator: '',
+  operator: OperatorsValue.None,
   secondOperand: '',
   result: '0',
 };
 
 export const calculations = createSlice({
-  name: 'AppCalculations',
+  name: NameSpace.Calculator,
   initialState: initialStateApp,
   reducers: {
     setFirstOperand: (state, action) => {
       state.firstOperand += action.payload;
       state.result = state.firstOperand;
     },
-
     setEqual: (state) => {
       switch (state.operator) {
-        case '+': {
+        case OperatorsValue.Add: {
           state.firstOperand = (Number(state.firstOperand) + Number(state.secondOperand)).toString();
           break;
         }
-        case '-': {
+        case OperatorsValue.Subtract: {
           state.firstOperand = (Number(state.firstOperand) - Number(state.secondOperand)).toString();
           break;
         }
-        case '*': {
+        case OperatorsValue.Multiply: {
           state.firstOperand = (Number(state.firstOperand) * Number(state.secondOperand)).toString();
           break;
         }
-        case '/': {
+        case OperatorsValue.Divide: {
           state.firstOperand = (Number(state.firstOperand) / Number(state.secondOperand)).toString();
           break;
         }
@@ -42,19 +43,19 @@ export const calculations = createSlice({
     setOperator: (state, action) => {
       if (state.secondOperand !== '' && state.operator !== initialStateApp.operator) {
         switch (state.operator) {
-          case '+': {
+          case OperatorsValue.Add: {
             state.firstOperand = (Number(state.firstOperand) + Number(state.secondOperand)).toString();
             break;
           }
-          case '-': {
+          case OperatorsValue.Subtract: {
             state.firstOperand = (Number(state.firstOperand) - Number(state.secondOperand)).toString();
             break;
           }
-          case '*': {
+          case OperatorsValue.Multiply: {
             state.firstOperand = (Number(state.firstOperand) * Number(state.secondOperand)).toString();
             break;
           }
-          case '/': {
+          case OperatorsValue.Divide: {
             if (state.secondOperand === '0') {
               state.result = 'Не определено';
               break;

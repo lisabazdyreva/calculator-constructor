@@ -1,20 +1,27 @@
 import {store} from "../store/store";
+import {CalculatorElementsName, CalculatorMode, OperatorsValue} from "../const";
+
+
+export type CalculatorModeType = typeof CalculatorMode[keyof typeof CalculatorMode];
+export type CalculatorElementsNameType = typeof CalculatorElementsName[keyof typeof CalculatorElementsName];
+export type OperatorType = typeof OperatorsValue[keyof typeof OperatorsValue];
+
+
 
 export type AppProcess = {
-  calculatorDisplayMode: string,
-  isCanvasEmpty: boolean,
-  isDraggableInsideCanvas: boolean,
-  elementsInCalculator: string[]
+  calculatorDisplayMode: CalculatorModeType,
+};
+
+export type AppCanvas = {
+  elementsInCalculator: CalculatorElementsNameType[],
 };
 
 export type AppCalculations = {
   firstOperand: string,
-  operator: string,
+  operator: OperatorType,
   secondOperand: string,
   result: string,
 };
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-// TODO поправить значение

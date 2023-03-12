@@ -1,7 +1,10 @@
-import {useAppDispatch} from "../../hooks";
 import {ChangeEvent} from "react";
-import {setDisplayMode} from "../../store/process/process";
+
+import {useAppDispatch} from "../../hooks";
+
+import {setCalculatorDisplayMode} from "../../store/process/process";
 import {resetDisplay} from '../../store/calculations/calculations';
+import {CalculatorMode} from "../../const";
 
 const Switcher = () => {
 
@@ -11,7 +14,7 @@ const Switcher = () => {
         const target = evt.target as HTMLInputElement;
         const value = target.dataset.value;
 
-        dispatch(setDisplayMode(value));
+        dispatch(setCalculatorDisplayMode(value));
         dispatch(resetDisplay());
     };
 
@@ -20,7 +23,7 @@ const Switcher = () => {
             <div className="switcher__buttons">
 
                 <input onChange={onChangeDisplayModeHandler} className="switcher__input" id="display-active" name="display-mode" type="radio"
-                       data-value="active" />
+                       data-value={CalculatorMode.Active} />
                 <label className="switcher__button" htmlFor="display-active">
                     <svg className="switcher__icon" width="20" height="20" aria-hidden="true">
                         <use xlinkHref="#eye-icon"></use>
@@ -29,7 +32,7 @@ const Switcher = () => {
                 </label>
 
                 <input onChange={onChangeDisplayModeHandler} className="switcher__input" id="display-edit" name="display-mode" type="radio"
-                       data-value="edit" defaultChecked/>
+                       data-value={CalculatorMode.Edit} defaultChecked/>
                 <label className="switcher__button" htmlFor="display-edit">
                     <svg className="switcher__icon" width="20" height="20" aria-hidden="true">
                         <use xlinkHref="#brackets-icon"></use>
