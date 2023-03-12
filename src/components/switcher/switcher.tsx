@@ -1,6 +1,7 @@
 import {useAppDispatch} from "../../hooks";
 import {ChangeEvent} from "react";
 import {setDisplayMode} from "../../store/process/process";
+import {resetDisplay} from '../../store/calculations/calculations';
 
 const Switcher = () => {
 
@@ -11,6 +12,7 @@ const Switcher = () => {
         const value = target.dataset.value;
 
         dispatch(setDisplayMode(value));
+        dispatch(resetDisplay());
     };
 
     return (

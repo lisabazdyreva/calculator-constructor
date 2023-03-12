@@ -27,12 +27,18 @@ export const process = createSlice({
           state.isCanvasEmpty = false;
         },
         removeElement: (state, action) => {
-          state.elementsInCalculator = state.elementsInCalculator.filter((elem) => elem === action.payload);
+          state.elementsInCalculator = state.elementsInCalculator.filter((elem) => elem !== action.payload);
           if (!state.elementsInCalculator.length) {
             state.isCanvasEmpty = true;
           }
         },
-    }
+        replaceElement: (state, action) => {
+          const filtered = state.elementsInCalculator.filter((elem) => elem !== action.payload.elem);
+          const newIndex = state.elementsInCalculator.indexOf(action.payload.oldElem);
+
+          state.elementsInCalculator = [...filtered.slice(0, newIndex), action.payload.elem, ...filtered.slice(newIndex)];
+        },
+    },
 });
 
-export const {setDisplayMode, setCanvasViewMode, setPosition, setElement, removeElement} = process.actions;
+export const {setDisplayMode, setCanvasViewMode, setPosition, setElement, removeElement, replaceElement} = process.actions;
