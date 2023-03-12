@@ -3,9 +3,8 @@ import React from 'react';
 import './app.css';
 
 import Svg from "./components/svg";
-import Switcher from "./components/switcher/switcher";
+import Switcher from "./components/switcher";
 import CalculatorContent from './components/calculator-content/calculator-content';
-
 
 const App = () => {
   return (

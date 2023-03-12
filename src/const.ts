@@ -25,3 +25,9 @@ export const OperatorsValue = {
   Divide: '/',
   None: '',
 } as const;
+
+
+export const DIVIDE_NULL_MESSAGE = 'Не определено';
+
+export const BIG_NUMBER = 'Не поддерживаем';
+export const MAX_OPERAND_LENGTH = 15;

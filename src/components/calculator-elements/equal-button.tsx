@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 
 import {getCalculatorDisplayMode} from '../../store/process/selectors';
@@ -19,9 +19,23 @@ const EqualButton = () => {
     }
   };
 
+  useEffect(() => {
+    if (calculatorDisplayMode === CalculatorMode.Active) {
+      const onKeyDownHandler = (evt: KeyboardEvent) => {
+        if (evt.key === '=' || evt.key === 'Enter') {
+          dispatch(setEqual());
+        }
+      };
+
+      document.addEventListener('keyup', onKeyDownHandler);
+
+      return () => document.removeEventListener('keyup', onKeyDownHandler);
+    }
+  }, [calculatorDisplayMode, dispatch]);
+
   return (
       <button className="equal-button" type="button" onClick={onClickHandler}>=</button>
   );
 };
-// TODO naming
+
 export default EqualButton;

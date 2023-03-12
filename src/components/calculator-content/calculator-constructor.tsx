@@ -1,19 +1,19 @@
 import React, {useState} from "react";
 
-import Display from './calculator-elements/display';
-import OperatorButtons from './calculator-elements/operator-buttons';
-import NumberButtons from './calculator-elements/number-buttons';
-import EqualButton from './calculator-elements/equal-button';
+import Display from '../calculator-elements/display';
+import OperatorButtons from '../calculator-elements/operator-buttons';
+import NumberButtons from '../calculator-elements/number-buttons';
+import EqualButton from '../calculator-elements/equal-button';
 
-import {useAppDispatch, useAppSelector} from '../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 
-import {replaceElement} from '../store/canvas/canvas';
-import {getCalculatorElements} from '../store/canvas/selectors';
-import {CalculatorElementsName} from "../const";
-import {CalculatorElementsNameType} from "../types/state";
-import DragInsideWrapper from "./calculator-elements-wrapper/drag-inside-wrapper";
+import {replaceElement} from '../../store/canvas/canvas';
+import {getCalculatorElements} from '../../store/canvas/selectors';
+import {CalculatorElementsName} from "../../const";
+import {CalculatorElementsNameType} from "../../types/state";
+import DragInsideWrapper from "../calculator-elements-wrapper/drag-inside-wrapper";
 
-const CalculatorCreated = () => {
+const CalculatorConstructor = () => {
   const elementsToRender: string[] = useAppSelector(getCalculatorElements);
   const dispatch = useAppDispatch();
 
@@ -36,6 +36,8 @@ const CalculatorCreated = () => {
       const elementToReplaceId = positionElement.dataset.id as CalculatorElementsNameType;
 
       dispatch(replaceElement({activeElementId, elementToReplaceId}));
+
+      setActiveElement(null);
     }
 
     if (activeElement && positionElement) {
@@ -97,4 +99,4 @@ const CalculatorCreated = () => {
   );
 };
 
-export default CalculatorCreated;
+export default CalculatorConstructor;

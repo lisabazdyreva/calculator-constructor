@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CalculatorComponents from '../calculator-components';
-import DropArea from '../drop-area/drop-area';
-import CalculatorCreated from '../calculator-created';
+import CalculatorComponents from './calculator-components';
+import DropArea from '../drop-area';
+import CalculatorConstructor from './calculator-constructor';
 
 import {useAppDispatch, useAppSelector} from '../../hooks';
 
@@ -95,7 +95,7 @@ const CalculatorContent = () => {
       <div className="calculator-wrapper">
         <div className={calculatorClassname} onDragLeave={onDragLeaveHandler} onDragOver={onDragOverHandler} onDrop={onDropHandler}>
           <DropArea />
-          <CalculatorCreated />
+          <CalculatorConstructor />
         </div>
       </div>
     </div>

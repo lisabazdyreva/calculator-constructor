@@ -21,6 +21,9 @@ export type AppCalculations = {
   operator: OperatorType,
   secondOperand: string,
   result: string,
+  isEqualActive: boolean,
+  isFloatFirst: boolean,
+  isFloatSecond: boolean,
 };
 
 export type RootState = ReturnType<typeof store.getState>;

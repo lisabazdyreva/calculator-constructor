@@ -1,20 +1,41 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 
 import {setOperator} from '../../store/calculations/calculations';
 import {OperatorType} from "../../types/state";
+import {CalculatorMode} from "../../const";
+import {getCalculatorDisplayMode} from "../../store/process/selectors";
 
 
 const OperatorButtons = () => {
   const dispatch = useAppDispatch();
+  const calculatorDisplayMode = useAppSelector(getCalculatorDisplayMode);
+
+  const dispatchOperator = (value: OperatorType) => {
+    if (value) {
+      dispatch(setOperator(value as OperatorType));
+    }
+  };
+
+  useEffect(() => {
+    if (calculatorDisplayMode === CalculatorMode.Active) {
+      const onKeyDownHandler = (evt: KeyboardEvent) => {
+        if (evt.key === '+' || evt.key === '-' || evt.key === '/' || evt.key === '*') {
+          dispatchOperator(evt.key);
+        }
+      };
+
+      document.addEventListener('keyup', onKeyDownHandler);
+
+      return () => document.removeEventListener('keyup', onKeyDownHandler);
+    }
+  }, [calculatorDisplayMode, dispatchOperator]);
 
   const onClickOperatorsHandler = (evt: React.MouseEvent) => {
     const target = evt.target as HTMLButtonElement;
 
-    if (target.value) {
-      dispatch(setOperator(target.value as OperatorType));
-    }
+    dispatchOperator(target.value as OperatorType);
   };
 
   return (
