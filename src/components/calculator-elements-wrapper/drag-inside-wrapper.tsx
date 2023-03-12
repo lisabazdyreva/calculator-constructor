@@ -13,6 +13,7 @@ interface DragInsideWrapperProps {
   activeElement: HTMLElement | null,
   setPositionElement: (element: HTMLElement) => void,
 }
+
 const DragInsideWrapper = ({children, order, id, activeElement, setPositionElement}: DragInsideWrapperProps) => {
   let cursorPositionStart: number;
 

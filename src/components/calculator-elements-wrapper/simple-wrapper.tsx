@@ -5,9 +5,11 @@ interface SimpleWrapperProps {
   disabled: boolean,
   id: CalculatorElementsNameType,
 }
+
 const SimpleWrapper = ({children, disabled, id}: SimpleWrapperProps) => {
   return (
-    <div className={`component-wrapper calculator-components__wrapper ${disabled ? 'not-draggable' : ''}`} draggable={!disabled} data-id={id}>
+    <div className={`component-wrapper calculator-components__wrapper ${disabled ? 'not-draggable' : ''}`}
+         draggable={!disabled} data-id={id}>
       {children}
     </div>
   );

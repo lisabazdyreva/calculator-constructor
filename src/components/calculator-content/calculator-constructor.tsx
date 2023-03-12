@@ -61,7 +61,7 @@ const CalculatorConstructor = () => {
           <DragInsideWrapper
             order={0}
             id={CalculatorElementsName.Display}
-            children={<Display />}
+            children={<Display/>}
             activeElement={activeElement}
             setPositionElement={setPositionElement}
           />
@@ -70,7 +70,7 @@ const CalculatorConstructor = () => {
           <DragInsideWrapper
             order={elementsToRender.indexOf(CalculatorElementsName.Operators)}
             id={CalculatorElementsName.Operators}
-            children={<OperatorButtons />}
+            children={<OperatorButtons/>}
             activeElement={activeElement}
             setPositionElement={setPositionElement}
           />
@@ -79,7 +79,7 @@ const CalculatorConstructor = () => {
           <DragInsideWrapper
             order={elementsToRender.indexOf(CalculatorElementsName.Numbers)}
             id={CalculatorElementsName.Numbers}
-            children={<NumberButtons />}
+            children={<NumberButtons/>}
             activeElement={activeElement}
             setPositionElement={setPositionElement}
           />
@@ -88,7 +88,7 @@ const CalculatorConstructor = () => {
           <DragInsideWrapper
             order={elementsToRender.indexOf(CalculatorElementsName.Equal)}
             id={CalculatorElementsName.Equal}
-            children={<EqualButton />}
+            children={<EqualButton/>}
             activeElement={activeElement}
             setPositionElement={setPositionElement}
           />

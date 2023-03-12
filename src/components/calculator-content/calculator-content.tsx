@@ -91,11 +91,12 @@ const CalculatorContent = () => {
 
   return (
     <div className="calculator-content main__calculator-content">
-      <CalculatorComponents setElementId={setElementId} />
+      <CalculatorComponents setElementId={setElementId}/>
       <div className="calculator-wrapper">
-        <div className={calculatorClassname} onDragLeave={onDragLeaveHandler} onDragOver={onDragOverHandler} onDrop={onDropHandler}>
-          <DropArea />
-          <CalculatorConstructor />
+        <div className={calculatorClassname} onDragLeave={onDragLeaveHandler} onDragOver={onDragOverHandler}
+             onDrop={onDropHandler}>
+          <DropArea/>
+          <CalculatorConstructor/>
         </div>
       </div>
     </div>

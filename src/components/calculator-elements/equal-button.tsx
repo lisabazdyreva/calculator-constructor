@@ -34,7 +34,7 @@ const EqualButton = () => {
   }, [calculatorDisplayMode, dispatch]);
 
   return (
-      <button className="equal-button" type="button" onClick={onClickHandler}>=</button>
+    <button className="equal-button" type="button" onClick={onClickHandler}>=</button>
   );
 };
 

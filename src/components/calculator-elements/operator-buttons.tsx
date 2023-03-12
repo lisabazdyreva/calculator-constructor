@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 
 import {useAppDispatch, useAppSelector} from '../../hooks';
 
@@ -12,11 +12,11 @@ const OperatorButtons = () => {
   const dispatch = useAppDispatch();
   const calculatorDisplayMode = useAppSelector(getCalculatorDisplayMode);
 
-  const dispatchOperator = (value: OperatorType) => {
+  const dispatchOperator = useCallback((value: OperatorType) => {
     if (value) {
       dispatch(setOperator(value as OperatorType));
     }
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     if (calculatorDisplayMode === CalculatorMode.Active) {
@@ -39,12 +39,12 @@ const OperatorButtons = () => {
   };
 
   return (
-      <div className="operator-buttons" onClick={onClickOperatorsHandler}>
-        <button className="operator-buttons__item" type="button" value={'/'}>/</button>
-        <button className="operator-buttons__item" type="button" value={'*'}>х</button>
-        <button className="operator-buttons__item" type="button" value={'-'}>-</button>
-        <button className="operator-buttons__item" type="button" value={"+"}>+</button>
-      </div>
+    <div className="operator-buttons" onClick={onClickOperatorsHandler}>
+      <button className="operator-buttons__item" type="button" value={'/'}>/</button>
+      <button className="operator-buttons__item" type="button" value={'*'}>х</button>
+      <button className="operator-buttons__item" type="button" value={'-'}>-</button>
+      <button className="operator-buttons__item" type="button" value={"+"}>+</button>
+    </div>
   );
 };
 
