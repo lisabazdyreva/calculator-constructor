@@ -11,7 +11,7 @@ In the project directory, you can run:
 
 ## Демонстрация
 
-[Ссылка на деплой](https://calculator-constructor-sandy.vercel.app/)
+[Ссылка на деплой](https://calculator-constructor-git-master-lisabazdyreva.vercel.app/)
 
 [Ссылка на дизайн](https://www.figma.com/file/pdYzuOkvXY3Q00YRAMsLuz/Calculator-Constructor)
 
