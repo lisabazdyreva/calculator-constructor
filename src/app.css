@@ -190,7 +190,6 @@
 .number-buttons {
     display: flex;
     flex-wrap: wrap-reverse;
-    flex-direction: row-reverse;
     gap: 8px;
 }
 
@@ -371,6 +370,7 @@
   z-index: 10;
   top: -20px;
   left: 0;
+  pointer-events: none;
 }
 
 .border-bottom {
@@ -383,5 +383,6 @@
   position: absolute;
   bottom: -20px;
   left: 0;
+  pointer-events: none;
 }
 

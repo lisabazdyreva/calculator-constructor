@@ -6,29 +6,36 @@ import {count} from "../../utils";
 
 export const initialStateApp: AppCalculations = {
   firstOperand: '',
-  operator: OperatorsValue.None,
   secondOperand: '',
+
+  operator: OperatorsValue.None,
   result: '0',
+
   isEqualActive: false,
   isFloatFirst: false,
   isFloatSecond: false,
 };
-
-// ввод с клавиатуры?
 
 export const calculations = createSlice({
   name: NameSpace.Calculator,
   initialState: initialStateApp,
   reducers: {
     setFirstOperand: (state, action) => {
+
       if (action.payload === '.' && state.isFloatFirst) {
         return;
+      }
+
+      if (action.payload === '.' && !state.isFloatFirst) {
+        state.isFloatFirst = true;
       }
 
       if (action.payload === '.' && state.firstOperand === '') {
         state.isFloatFirst = true;
         state.firstOperand = '0';
       }
+
+      console.log(action.payload)
 
       if (action.payload === '0' && state.firstOperand === '') {
         return;
@@ -78,6 +85,7 @@ export const calculations = createSlice({
 
         state.firstOperand = `${result}`;
         state.secondOperand = '';
+        state.isFloatSecond = false;
 
         state.result = state.firstOperand;
         state.operator = action.payload;
@@ -87,6 +95,7 @@ export const calculations = createSlice({
 
       if (state.isEqualActive) {
         state.operator = action.payload;
+
         state.secondOperand = '';
         state.isEqualActive = false;
       }
@@ -96,6 +105,11 @@ export const calculations = createSlice({
       if (action.payload === '.' && state.isFloatSecond) {
         return;
       }
+
+      if (action.payload === '.' && !state.isFloatSecond) {
+        state.isFloatSecond = true;
+      }
+
 
       if (action.payload === '.' && state.secondOperand === '') {
         state.isFloatSecond = true;
@@ -127,8 +141,10 @@ export const calculations = createSlice({
     resetDisplay: (state) => {
       state.result = initialStateApp.result;
       state.firstOperand = initialStateApp.firstOperand;
+      state.isFloatFirst = initialStateApp.isFloatFirst;
       state.operator = initialStateApp.operator;
       state.secondOperand = initialStateApp.secondOperand;
+      state.isFloatSecond = initialStateApp.isFloatSecond;
     },
   },
 });

@@ -17,7 +17,6 @@ const NumberButtons = () => {
   const dispatch = useAppDispatch();
 
   const dispatchOperands = useCallback((value: number | string) => {
-
     if (value && operator === OperatorsValue.None) {
       dispatch(setFirstOperand(value))
     }
@@ -52,8 +51,8 @@ const NumberButtons = () => {
 
   return (
     <div className="number-buttons" onClick={onButtonClickHandler}>
-      <button className="number-buttons__item" type="button" value={'.'}>,</button>
       <button className="number-buttons__item number-buttons__item--long" type="button" value={0}>0</button>
+      <button className="number-buttons__item" type="button" value={'.'}>,</button>
       <button className="number-buttons__item" type="button" value={1}>1</button>
       <button className="number-buttons__item" type="button" value={2}>2</button>
       <button className="number-buttons__item" type="button" value={3}>3</button>

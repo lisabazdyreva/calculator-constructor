@@ -4,13 +4,27 @@ import {OperatorType} from "./types/state";
 export const count = (a: number, b: number, operator: OperatorType) => {
   switch (operator) {
     case OperatorsValue.Add: {
-      return a + b;
+      if (a + b % 1 === 0) {
+        return a + b;
+      } else {
+        return +(a + b).toFixed(8);
+      }
+
     }
     case OperatorsValue.Subtract: {
-      return a - b;
+      if (a - b % 1 === 0) {
+        return a - b;
+      } else {
+        return +(a - b).toFixed(8);
+      }
+
     }
     case OperatorsValue.Multiply: {
-      return a * b;
+      if (a * b % 1 === 0) {
+        return a * b;
+      } else {
+        return +(a * b).toFixed(8);
+      }
     }
     case OperatorsValue.Divide: {
       if (b === 0) {
