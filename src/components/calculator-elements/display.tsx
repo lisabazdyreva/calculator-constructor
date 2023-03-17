@@ -8,7 +8,7 @@ const Display = () => {
   const displayValue = useAppSelector(getDisplay);
 
   return (
-    <p className="display" style={{fontSize: `${36 - displayValue.length}px`}}>{displayValue}</p>
+    <p className="display" style={{fontSize: `${36 - displayValue.length}px`, pointerEvents: 'none'}}>{displayValue}</p>
   );
 };
 

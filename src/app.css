@@ -123,12 +123,13 @@
     gap: 12px;
     width: 240px;
     box-sizing: border-box;
-    color: var(--black)
+    color: var(--black);
+    cursor: move;
+    /*cursor: grabbing;*/
 }
 
 .calculator-components__wrapper {
     box-shadow: var(--wrapper-shadow);
-    cursor: move;
 }
 
 .calculator-components__wrapper button {
@@ -297,10 +298,6 @@
     cursor: default;
 }
 
-.calculator--canvas-full .display {
-    cursor: no-drop;
-}
-
 .calculator .calculator__info {
     display: none;
 }
@@ -359,30 +356,34 @@
     background-color: var(--light-blue-bg);
 }
 
-
 .border-top {
   position: relative;
+  cursor: grab;
 }
 
 .border-top::before {
   content: url("/public/assets/img/border-drag.svg");
+  height: 6px;
   position: absolute;
   z-index: 10;
   top: -20px;
-  left: 0;
-  pointer-events: none;
+  left: -5px;
 }
 
 .border-bottom {
   position: relative;
+  cursor: grab;
 }
 
 .border-bottom::after {
   content: url("/public/assets/img/border-drag.svg");
+  height: 6px;
   z-index: 10;
   position: absolute;
-  bottom: -20px;
-  left: 0;
-  pointer-events: none;
+  bottom: 2px;
+  left: -5px;
 }
 
+.pointer-events-disable {
+  cursor: no-drop;
+}

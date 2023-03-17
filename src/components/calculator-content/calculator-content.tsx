@@ -34,6 +34,8 @@ const CalculatorContent = () => {
   };
 
   const onDragLeaveHandler = (evt: React.DragEvent) => {
+    evt.preventDefault();
+
     const currentTarget = evt.currentTarget as HTMLElement;
 
     if (currentTarget.classList.contains('droppable-canvas--active')) {
@@ -48,6 +50,9 @@ const CalculatorContent = () => {
 
   const onDragOverHandler = (evt: React.DragEvent) => {
     evt.preventDefault();
+
+    console.log('hi')
+
     if (idPreSet) {
       const currentTarget = evt.currentTarget as HTMLElement;
 
@@ -95,7 +100,7 @@ const CalculatorContent = () => {
       <div className="calculator-wrapper">
         <div className={calculatorClassname} onDragLeave={onDragLeaveHandler} onDragOver={onDragOverHandler}
              onDrop={onDropHandler}>
-          <DropArea/>
+          <DropArea />
           <CalculatorConstructor/>
         </div>
       </div>

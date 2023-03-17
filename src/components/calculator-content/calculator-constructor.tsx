@@ -36,66 +36,65 @@ const CalculatorConstructor = () => {
       const elementToReplaceId = positionElement.dataset.id as CalculatorElementsNameType;
 
       dispatch(replaceElement({activeElementId, elementToReplaceId}));
-
-      setActiveElement(null);
     }
 
-    if (activeElement && positionElement) {
+    if (activeElement) {
       const target = evt.target as HTMLElement;
 
-      target.classList.remove('border-bottom');
-      target.classList.remove('border-top');
+      if (target.classList.contains('border-bottom')) {
+        target.classList.remove('border-bottom');
+      }
+
+      if (target.classList.contains('border-top')) {
+        target.classList.remove('border-top');
+      }
     }
+    setActiveElement(null);
   };
 
   const setPositionElement = (element: HTMLElement) => {
-    if (element !== positionElement) {
       positionElement = element;
-    }
   };
 
   return (
-    <>
-      <div className="calculator-components" onDragStart={onCalculatorDragStart} onDrop={onCalculatorDropHandler}>
-        {elementsToRender.includes(CalculatorElementsName.Display) &&
-          <DragInsideWrapper
-            order={0}
-            id={CalculatorElementsName.Display}
-            children={<Display/>}
-            activeElement={activeElement}
-            setPositionElement={setPositionElement}
-          />
-        }
-        {elementsToRender.includes(CalculatorElementsName.Operators) &&
-          <DragInsideWrapper
-            order={elementsToRender.indexOf(CalculatorElementsName.Operators)}
-            id={CalculatorElementsName.Operators}
-            children={<OperatorButtons/>}
-            activeElement={activeElement}
-            setPositionElement={setPositionElement}
-          />
-        }
-        {elementsToRender.includes(CalculatorElementsName.Numbers) &&
-          <DragInsideWrapper
-            order={elementsToRender.indexOf(CalculatorElementsName.Numbers)}
-            id={CalculatorElementsName.Numbers}
-            children={<NumberButtons/>}
-            activeElement={activeElement}
-            setPositionElement={setPositionElement}
-          />
-        }
-        {elementsToRender.includes(CalculatorElementsName.Equal) &&
-          <DragInsideWrapper
-            order={elementsToRender.indexOf(CalculatorElementsName.Equal)}
-            id={CalculatorElementsName.Equal}
-            children={<EqualButton/>}
-            activeElement={activeElement}
-            setPositionElement={setPositionElement}
-          />
-        }
-      </div>
-    </>
-
+    <div className="calculator-components" onDragStart={onCalculatorDragStart} onDrop={onCalculatorDropHandler}>
+      {elementsToRender.includes(CalculatorElementsName.Display) &&
+        <DragInsideWrapper
+          order={0}
+          id={CalculatorElementsName.Display}
+          children={<Display/>}
+          activeElement={activeElement}
+          setPositionElement={setPositionElement}
+        />
+      }
+      {elementsToRender.includes(CalculatorElementsName.Operators) &&
+        <DragInsideWrapper
+          order={elementsToRender.indexOf(CalculatorElementsName.Operators)}
+          id={CalculatorElementsName.Operators}
+          children={<OperatorButtons/>}
+          activeElement={activeElement}
+          setPositionElement={setPositionElement}
+        />
+      }
+      {elementsToRender.includes(CalculatorElementsName.Numbers) &&
+        <DragInsideWrapper
+          order={elementsToRender.indexOf(CalculatorElementsName.Numbers)}
+          id={CalculatorElementsName.Numbers}
+          children={<NumberButtons/>}
+          activeElement={activeElement}
+          setPositionElement={setPositionElement}
+        />
+      }
+      {elementsToRender.includes(CalculatorElementsName.Equal) &&
+        <DragInsideWrapper
+          order={elementsToRender.indexOf(CalculatorElementsName.Equal)}
+          id={CalculatorElementsName.Equal}
+          children={<EqualButton/>}
+          activeElement={activeElement}
+          setPositionElement={setPositionElement}
+        />
+      }
+    </div>
   );
 };
 

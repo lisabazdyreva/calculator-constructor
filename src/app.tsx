@@ -4,7 +4,8 @@ import './app.css';
 
 import Svg from "./components/svg";
 import Switcher from "./components/switcher";
-import CalculatorContent from './components/calculator-content/calculator-content';
+// import CalculatorContent from './components/calculator-content/calculator-content';
+import CalculatorContentNew from "./components/new-calculator-content/calculator-content-new";
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
           <main className="main body__main">
               <div className="content-wrapper">
                 <Switcher />
-                <CalculatorContent />
+                <CalculatorContentNew />
               </div>
           </main>
       </>
