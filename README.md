@@ -11,7 +11,11 @@ In the project directory, you can run:
 
 ## Демонстрация
 
-Ссылка
+[Ссылка на деплой](https://calculator-constructor-git-master-lisabazdyreva.vercel.app/)
+
+[Ссылка на дизайн](https://www.figma.com/file/pdYzuOkvXY3Q00YRAMsLuz/Calculator-Constructor)
+
+[Ссылка на тз](https://sendsay.notion.site/Frontend-e378a45c3a934dafb6e44f79da2a0040)
 
 
 ## Стек
