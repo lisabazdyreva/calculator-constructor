@@ -1,6 +1,7 @@
-import {CalculatorModeType, RootState} from "../../types/state";
+import { CalculatorModeType, RootState } from "../../types/state";
 
-import {NameSpace} from "../../const";
+import { NameSpace } from "../../const";
 
-export const getCalculatorDisplayMode = (state: RootState): CalculatorModeType => state[NameSpace.App].calculatorDisplayMode;
-
+export const getCalculatorDisplayMode = (
+  state: RootState
+): CalculatorModeType => state[NameSpace.App].calculatorDisplayMode;

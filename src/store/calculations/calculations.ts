@@ -1,15 +1,20 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-import {AppCalculations} from '../../types/state';
-import {BIG_NUMBER, MAX_OPERAND_LENGTH, NameSpace, OperatorsValue} from "../../const";
-import {count} from "../../utils";
+import { AppCalculations } from "../../types/state";
+import {
+  BIG_NUMBER,
+  MAX_OPERAND_LENGTH,
+  NameSpace,
+  OperatorsValue,
+} from "../../const";
+import { count } from "../../utils";
 
 export const initialStateApp: AppCalculations = {
-  firstOperand: '',
-  secondOperand: '',
+  firstOperand: "",
+  secondOperand: "",
 
   operator: OperatorsValue.None,
-  result: '0',
+  result: "0",
 
   isEqualActive: false,
   isFloatFirst: false,
@@ -21,23 +26,22 @@ export const calculations = createSlice({
   initialState: initialStateApp,
   reducers: {
     setFirstOperand: (state, action) => {
+      if (action.payload === ".") {
+        if (state.isFloatFirst) {
+          return;
+        }
 
-      if (action.payload === '.' && state.isFloatFirst) {
-        return;
+        if (!state.isFloatFirst) {
+          state.isFloatFirst = true;
+        }
+
+        if (state.firstOperand === "") {
+          state.isFloatFirst = true;
+          state.firstOperand = "0";
+        }
       }
 
-      if (action.payload === '.' && !state.isFloatFirst) {
-        state.isFloatFirst = true;
-      }
-
-      if (action.payload === '.' && state.firstOperand === '') {
-        state.isFloatFirst = true;
-        state.firstOperand = '0';
-      }
-
-      console.log(action.payload)
-
-      if (action.payload === '0' && state.firstOperand === '') {
+      if (action.payload === "0" && state.firstOperand === "") {
         return;
       }
 
@@ -46,10 +50,12 @@ export const calculations = createSlice({
 
       if (state.firstOperand.length > MAX_OPERAND_LENGTH) {
         state.result = BIG_NUMBER;
+
         state.firstOperand = initialStateApp.firstOperand;
-        state.secondOperand = initialStateApp.secondOperand;
+        state.isFloatFirst = initialStateApp.isFloatFirst;
         state.operator = initialStateApp.operator;
-        state.isEqualActive = initialStateApp.isEqualActive;
+        state.secondOperand = initialStateApp.secondOperand;
+        state.isFloatSecond = initialStateApp.isFloatSecond;
       }
     },
     setEqual: (state) => {
@@ -63,12 +69,15 @@ export const calculations = createSlice({
         return;
       }
 
-
       if (!state.secondOperand) {
         state.secondOperand = state.firstOperand;
       }
 
-      const result = count(Number(state.firstOperand), Number(state.secondOperand), state.operator);
+      const result = count(
+        Number(state.firstOperand),
+        Number(state.secondOperand),
+        state.operator
+      );
       state.firstOperand = `${result}`;
 
       state.result = state.firstOperand;
@@ -76,15 +85,19 @@ export const calculations = createSlice({
     },
     setOperator: (state, action) => {
       if (!state.firstOperand && action.payload === OperatorsValue.Subtract) {
-        state.firstOperand = '-';
+        state.firstOperand = "-";
         return;
       }
 
       if (state.secondOperand && !state.isEqualActive) {
-        const result = count(Number(state.firstOperand), Number(state.secondOperand), state.operator);
+        const result = count(
+          Number(state.firstOperand),
+          Number(state.secondOperand),
+          state.operator
+        );
 
         state.firstOperand = `${result}`;
-        state.secondOperand = '';
+        state.secondOperand = "";
         state.isFloatSecond = false;
 
         state.result = state.firstOperand;
@@ -96,42 +109,42 @@ export const calculations = createSlice({
       if (state.isEqualActive) {
         state.operator = action.payload;
 
-        state.secondOperand = '';
+        state.secondOperand = "";
         state.isEqualActive = false;
       }
     },
     setSecondOperand: (state, action) => {
+      if (action.payload === ".") {
+        if (state.isFloatSecond) {
+          return;
+        }
 
-      if (action.payload === '.' && state.isFloatSecond) {
-        return;
+        if (!state.isFloatSecond) {
+          state.isFloatSecond = true;
+        }
+
+        if (state.secondOperand === "") {
+          state.isFloatSecond = true;
+          state.secondOperand = "0";
+        }
       }
 
-      if (action.payload === '.' && !state.isFloatSecond) {
-        state.isFloatSecond = true;
-      }
-
-
-      if (action.payload === '.' && state.secondOperand === '') {
-        state.isFloatSecond = true;
-        state.secondOperand = '0';
-      }
-
-      if (state.firstOperand === '-') {
+      if (state.firstOperand === "-") {
         state.firstOperand += state.secondOperand;
-        state.secondOperand = '';
+        state.secondOperand = "";
         return;
       }
 
       if (state.secondOperand.length > MAX_OPERAND_LENGTH) {
-        state.result = BIG_NUMBER;
         state.firstOperand = initialStateApp.firstOperand;
-        state.secondOperand = initialStateApp.secondOperand;
+        state.isFloatFirst = initialStateApp.isFloatFirst;
         state.operator = initialStateApp.operator;
-        state.isEqualActive = initialStateApp.isEqualActive;
+        state.secondOperand = initialStateApp.secondOperand;
+        state.isFloatSecond = initialStateApp.isFloatSecond;
         return;
       }
 
-      if (action.payload === '0' && state.secondOperand === '') {
+      if (action.payload === "0" && state.secondOperand === "") {
         return;
       }
 
@@ -149,4 +162,10 @@ export const calculations = createSlice({
   },
 });
 
-export const {setFirstOperand, setOperator, setSecondOperand, resetDisplay, setEqual} = calculations.actions;
+export const {
+  setFirstOperand,
+  setOperator,
+  setSecondOperand,
+  resetDisplay,
+  setEqual,
+} = calculations.actions;

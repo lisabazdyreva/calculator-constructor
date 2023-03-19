@@ -1,24 +1,35 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
-import {CalculatorElementsName} from '../const';
-import {CalculatorElementsNameType} from '../types/state';
-import {replaceElement, setElement, setElementById} from '../store/canvas/canvas';
+import { CalculatorElementsName } from "../const";
+import { CalculatorElementsNameType } from "../types/state";
+import {
+  replaceElement,
+  setElement,
+  setElementById,
+} from "../store/calculator-construction/calculator-construction";
 
-import {useAppDispatch, useAppSelector} from './index';
-import {getCalculatorElements} from "../store/canvas/selectors";
-
+import { useAppDispatch, useAppSelector } from "./index";
+import { getCalculatorElements } from "../store/calculator-construction/selectors";
 
 export const useDragNDrop = () => {
   const dispatch = useAppDispatch();
 
   const elementsInCalculator = useAppSelector(getCalculatorElements);
 
-  const [elementIdToAddInCalculator, setElementIdToAddInCalculator] = useState<CalculatorElementsNameType | null>(null);
-  const [changingPositionElement, setChangingPositionElement] = useState<HTMLElement | null>(null); // элемент, который хочет изменить своё местоположение
-  const [newPositionElement, setNewPositionElement] = useState<HTMLElement | null>(null);
+  const [
+    elementIdToAddInCalculator,
+    setElementIdToAddInCalculator,
+  ] = useState<CalculatorElementsNameType | null>(null);
+  const [
+    changingPositionElement,
+    setChangingPositionElement,
+  ] = useState<HTMLElement | null>(null); // элемент, который хочет изменить своё местоположение
+  const [
+    newPositionElement,
+    setNewPositionElement,
+  ] = useState<HTMLElement | null>(null);
 
   const [cursorPositionStart, setCursorPositionStart] = useState(0); // мб еще как использовать?
-
 
   // устанавливаем значение id для нового перетаскивемого в активную область элемента
   const setElementId = (id: CalculatorElementsNameType) => {
@@ -29,19 +40,19 @@ export const useDragNDrop = () => {
     parentElement.childNodes.forEach((child) => {
       const element = child as HTMLElement;
 
-      element.classList.remove('border-bottom');
-      element.classList.remove('border-top')
+      element.classList.remove("border-bottom");
+      element.classList.remove("border-top");
     });
   };
 
   const addTopBorder = (element: HTMLElement) => {
-    element.classList.add('border-top')
-    element.classList.remove('border-bottom');
+    element.classList.add("border-top");
+    element.classList.remove("border-bottom");
   };
 
   const addBottomBorder = (element: HTMLElement) => {
-    element.classList.add('border-bottom');
-    element.classList.remove('border-top');
+    element.classList.add("border-bottom");
+    element.classList.remove("border-top");
   };
 
   const setBorderOnHalfElement = (element: HTMLElement, positionY: number) => {
@@ -100,13 +111,18 @@ export const useDragNDrop = () => {
     const calculatorWrapper = currentTarget.children[0];
     const elementsWrapper = currentTarget.children[0].children[1];
 
-    if (calculatorWrapper.classList.contains('droppable-canvas--active')) {
-      calculatorWrapper.classList.remove('droppable-canvas--active');
+    if (
+      calculatorWrapper.classList.contains(
+        "droppable-calculator-construction--active"
+      )
+    ) {
+      calculatorWrapper.classList.remove(
+        "droppable-calculator-construction--active"
+      );
     }
 
     clearBorders(elementsWrapper);
   };
-
 
   // когда переносим жлемент внутри канваса
   const onDragOver = (evt: React.DragEvent) => {
@@ -115,31 +131,42 @@ export const useDragNDrop = () => {
 
     // добавляем цвет для пустого канваса
     if (elementIdToAddInCalculator) {
-      if (target.classList.contains('calculator--canvas-empty')) {
-        target.classList.add('droppable-canvas--active')
+      if (
+        target.classList.contains("calculator--calculator-construction-empty")
+      ) {
+        target.classList.add("droppable-calculator-construction--active");
       }
     }
 
     // добавляем нижнюю границу, если находимся в зоне добавления на последнем элементе
-    if (target.classList.contains('calculator-components') && target.children.length) {
+    if (
+      target.classList.contains("calculator-components") &&
+      target.children.length
+    ) {
       const lastElement = elementsInCalculator[elementsInCalculator.length - 1];
 
       target.childNodes.forEach((child) => {
         const elem = child as HTMLElement;
 
-        if (elem.dataset.id === lastElement && changingPositionElement?.dataset.id !== lastElement) {
-          elem.classList.add('border-bottom')
+        if (
+          elem.dataset.id === lastElement &&
+          changingPositionElement?.dataset.id !== lastElement
+        ) {
+          elem.classList.add("border-bottom");
         }
-      })
+      });
     }
 
     //добавляем для дисплея только нижнюю границу
     if (target.dataset.id === CalculatorElementsName.Display) {
-      target.classList.add('border-bottom');
+      target.classList.add("border-bottom");
       setNewPositionElement(target);
     }
 
-    if (target.dataset.id !== CalculatorElementsName.Display && target.dataset.id) {
+    if (
+      target.dataset.id !== CalculatorElementsName.Display &&
+      target.dataset.id
+    ) {
       setBorderOnHalfElement(target, evt.pageY);
     }
   };
@@ -153,24 +180,38 @@ export const useDragNDrop = () => {
 
     if (elementIdToAddInCalculator) {
       if (newPositionElement) {
-        dispatch(setElementById({element: elementIdToAddInCalculator, place: newPositionElement.dataset.id}));
+        dispatch(
+          setElementById({
+            element: elementIdToAddInCalculator,
+            place: newPositionElement.dataset.id,
+          })
+        );
       } else {
         dispatch(setElement(elementIdToAddInCalculator));
       }
 
       setElementIdToAddInCalculator(null);
 
-      if (target.classList.contains('calculator-components') && target.children.length) {
-        target.children[target.children.length - 1].classList.remove('border-bottom');
+      if (
+        target.classList.contains("calculator-components") &&
+        target.children.length
+      ) {
+        target.children[target.children.length - 1].classList.remove(
+          "border-bottom"
+        );
       }
-
     } else {
+      if (
+        changingPositionElement &&
+        newPositionElement &&
+        changingPositionElement !== newPositionElement
+      ) {
+        const element = changingPositionElement.dataset
+          .id as CalculatorElementsNameType;
+        const place = newPositionElement.dataset
+          .id as CalculatorElementsNameType;
 
-      if (changingPositionElement && newPositionElement && changingPositionElement !== newPositionElement) {
-        const changingPositionElementId = changingPositionElement.dataset.id as CalculatorElementsNameType;
-        const relativePositionElementId = newPositionElement.dataset.id as CalculatorElementsNameType;
-
-        dispatch(replaceElement({activeElementId: changingPositionElementId, elementToReplaceId: relativePositionElementId }));
+        dispatch(replaceElement({ element, place }));
       }
       setChangingPositionElement(null);
     }
@@ -179,9 +220,7 @@ export const useDragNDrop = () => {
     clearBorders(elementsWrapper);
 
     setNewPositionElement(null);
-
   };
-
 
   return {
     onDragStart,
@@ -189,7 +228,6 @@ export const useDragNDrop = () => {
     onDragLeave,
     onDragOver,
     onDrop,
-    setElementId
+    setElementId,
   };
 };
-
