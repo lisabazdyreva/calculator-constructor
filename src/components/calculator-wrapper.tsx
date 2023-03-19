@@ -1,19 +1,19 @@
 import React from "react";
 
-import CalculatorComponents from "./calculator-components";
-import DropArea from "../drop-area";
+import CalculatorTemplateList from "./calculator/calculator-template-list";
+import DropArea from "./drop-area";
 
-import {useAppSelector} from "../../hooks";
-import {useDragNDrop} from '../../hooks/use-drag-n-drop';
+import {useAppSelector} from "../hooks";
+import {useDragNDrop} from '../hooks/use-drag-n-drop';
 
-import {getCalculatorDisplayMode} from "../../store/process/selectors";
-import {getCalculatorElements} from "../../store/canvas/selectors";
+import {getCalculatorDisplayMode} from "../store/process/selectors";
+import {getCalculatorElements} from "../store/canvas/selectors";
 
-import {CalculatorMode} from "../../const";
-import CalculatorConstructorNew from "./calculator-constructor-new";
+import {CalculatorMode} from "../const";
+import CalculatorInConstructor from "./calculator/calculator-in-constructor";
 
 
-const CalculatorContentNew = () => {
+const CalculatorWrapper = () => {
   const calculatorDisplayMode = useAppSelector(getCalculatorDisplayMode);
   const calculatorElements = useAppSelector(getCalculatorElements);
 
@@ -33,7 +33,7 @@ const CalculatorContentNew = () => {
 
   return (
     <div className="calculator-content main__calculator-content">
-      <CalculatorComponents setElementId={setElementId}/>
+      <CalculatorTemplateList setElementId={setElementId}/>
       <div
         className="calculator-wrapper"
         onDragEnter={onDragEnterHandler}
@@ -44,11 +44,11 @@ const CalculatorContentNew = () => {
       >
         <div className={calculatorClassname}>
           <DropArea />
-          <CalculatorConstructorNew/>
+          <CalculatorInConstructor/>
         </div>
       </div>
     </div>
   );
 };
 
-export default CalculatorContentNew;
+export default CalculatorWrapper;

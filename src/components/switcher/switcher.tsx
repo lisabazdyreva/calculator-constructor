@@ -5,7 +5,7 @@ import {useAppDispatch} from "../../hooks";
 import {setCalculatorDisplayMode} from "../../store/process/process";
 import {resetDisplay} from '../../store/calculations/calculations';
 import {CalculatorMode, SwitcherIcon, SwitcherTitle} from "../../const";
-import SwitchButton from "./components/switch-button";
+import SwitchButton from "./switch-button";
 
 
 export type DataType = {

@@ -1,11 +1,11 @@
 import React, {useEffect, useCallback} from 'react';
 
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 
-import {setOperator} from '../../store/calculations/calculations';
-import {OperatorType} from "../../types/state";
-import {CalculatorMode} from "../../const";
-import {getCalculatorDisplayMode} from "../../store/process/selectors";
+import {setOperator} from '../../../store/calculations/calculations';
+import {OperatorType} from "../../../types/state";
+import {CalculatorMode} from "../../../const";
+import {getCalculatorDisplayMode} from "../../../store/process/selectors";
 
 
 const OperatorButtons = () => {

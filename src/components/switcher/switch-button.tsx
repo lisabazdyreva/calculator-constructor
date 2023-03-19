@@ -1,9 +1,9 @@
 import {ChangeEvent} from "react";
 
-import {DataType} from "../switcher";
+import {DataType} from "./switcher";
 
-import {useAppSelector} from "../../../hooks";
-import {getCalculatorDisplayMode} from "../../../store/process/selectors";
+import {useAppSelector} from "../../hooks";
+import {getCalculatorDisplayMode} from "../../store/process/selectors";
 
 interface ISwitchButton {
   onChangeDisplayModeHandler: (evt: ChangeEvent) => void,

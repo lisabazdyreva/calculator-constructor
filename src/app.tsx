@@ -5,7 +5,7 @@ import './app.css';
 import Svg from "./components/svg";
 import Switcher from "./components/switcher/switcher";
 // import CalculatorContentToDelete from './components/calculator-content/calculator-content';
-import CalculatorContentNew from "./components/calculator-content/calculator-content-new";
+import CalculatorWrapper from "./components/calculator-wrapper";
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
           <main className="main body__main">
               <div className="content-wrapper">
                 <Switcher />
-                <CalculatorContentNew />
+                <CalculatorWrapper />
               </div>
           </main>
       </>

@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 
-import {getCalculatorDisplayMode} from '../../store/process/selectors';
+import {getCalculatorDisplayMode} from '../../../store/process/selectors';
 
 
-import {setEqual} from '../../store/calculations/calculations';
-import {CalculatorMode} from "../../const";
+import {setEqual} from '../../../store/calculations/calculations';
+import {CalculatorMode} from "../../../const";
 
 
 const EqualButton = () => {

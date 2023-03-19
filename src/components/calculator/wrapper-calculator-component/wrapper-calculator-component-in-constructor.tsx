@@ -1,10 +1,10 @@
 import React from "react";
 
-import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getCalculatorDisplayMode} from "../../store/process/selectors";
-import {CalculatorElementsName, CalculatorMode} from "../../const";
-import {CalculatorElementsNameType} from "../../types/state";
-import {removeElement} from "../../store/canvas/canvas";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {getCalculatorDisplayMode} from "../../../store/process/selectors";
+import {CalculatorElementsName, CalculatorMode} from "../../../const";
+import {CalculatorElementsNameType} from "../../../types/state";
+import {removeElement} from "../../../store/canvas/canvas";
 
 interface DragInsideWrapperProps {
   children: JSX.Element,
@@ -12,7 +12,7 @@ interface DragInsideWrapperProps {
   id: CalculatorElementsNameType,
 }
 
-const DragInsideWrapper = ({children, order, id}: DragInsideWrapperProps) => {
+const WrapperCalculatorComponentInConstructor = ({children, order, id}: DragInsideWrapperProps) => {
   const calculatorDisplayMode = useAppSelector(getCalculatorDisplayMode);
   const dispatch = useAppDispatch();
 
@@ -42,4 +42,4 @@ const DragInsideWrapper = ({children, order, id}: DragInsideWrapperProps) => {
   );
 };
 
-export default DragInsideWrapper;
+export default WrapperCalculatorComponentInConstructor;

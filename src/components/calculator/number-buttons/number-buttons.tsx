@@ -1,13 +1,13 @@
 import React, {useEffect, useCallback} from 'react';
 
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 
-import {getCalculatorDisplayMode} from '../../store/process/selectors';
-import {getOperator} from '../../store/calculations/selectors';
+import {getCalculatorDisplayMode} from '../../../store/process/selectors';
+import {getOperator} from '../../../store/calculations/selectors';
 
-import {setFirstOperand, setSecondOperand} from '../../store/calculations/calculations';
+import {setFirstOperand, setSecondOperand} from '../../../store/calculations/calculations';
 
-import {CalculatorMode, OperatorsValue} from "../../const";
+import {CalculatorMode, OperatorsValue} from "../../../const";
 
 
 const NumberButtons = () => {

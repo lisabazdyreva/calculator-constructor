@@ -1,7 +1,7 @@
 import React from 'react';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../../hooks';
 
-import {getDisplay} from '../../store/calculations/selectors';
+import {getDisplay} from '../../../store/calculations/selectors';
 
 
 const Display = () => {
