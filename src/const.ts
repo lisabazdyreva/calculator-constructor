@@ -17,6 +17,16 @@ export const CalculatorMode = {
   Edit: 'edit'
 } as const;
 
+export const SwitcherIcon = {
+  Active: 'eye-icon',
+  Edit: 'brackets-icon',
+} as const;
+
+export const SwitcherTitle = {
+  Active: 'Runtime',
+  Edit: 'Constructor',
+} as const;
+
 
 export const OperatorsValue = {
   Add: '+',

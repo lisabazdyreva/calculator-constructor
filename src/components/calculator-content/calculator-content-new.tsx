@@ -1,8 +1,7 @@
 import React from "react";
 
-import CalculatorComponents from "../calculator-content/calculator-components";
+import CalculatorComponents from "./calculator-components";
 import DropArea from "../drop-area";
-import CalculatorConstructor from "../calculator-content/calculator-constructor-to-delete";
 
 import {useAppSelector} from "../../hooks";
 import {useDragNDrop} from '../../hooks/use-drag-n-drop';
@@ -11,6 +10,7 @@ import {getCalculatorDisplayMode} from "../../store/process/selectors";
 import {getCalculatorElements} from "../../store/canvas/selectors";
 
 import {CalculatorMode} from "../../const";
+import CalculatorConstructorNew from "./calculator-constructor-new";
 
 
 const CalculatorContentNew = () => {
@@ -44,7 +44,7 @@ const CalculatorContentNew = () => {
       >
         <div className={calculatorClassname}>
           <DropArea />
-          <CalculatorConstructor/>
+          <CalculatorConstructorNew/>
         </div>
       </div>
     </div>

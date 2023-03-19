@@ -19,16 +19,16 @@ const CalculatorConstructorNew = () => {
       {elementsToRender.map((element, index) => {
         switch (element) {
           case CalculatorElementsName.Display: {
-            return <DragInsideWrapper order={0} id={element} children={<Display/>}/>;
+            return <DragInsideWrapper key={element} order={0} id={element} children={<Display/>}/>;
           }
           case CalculatorElementsName.Equal: {
-            return <DragInsideWrapper order={index} id={element} children={<EqualButton/>}/>;
+            return <DragInsideWrapper key={element} order={index} id={element} children={<EqualButton/>}/>;
           }
           case CalculatorElementsName.Operators: {
-            return <DragInsideWrapper order={index} id={element} children={<OperatorButtons/>}/>
+            return <DragInsideWrapper key={element} order={index} id={element} children={<OperatorButtons/>}/>
           }
           case CalculatorElementsName.Numbers: {
-            return <DragInsideWrapper order={index} id={element} children={<NumberButtons/>}/>
+            return <DragInsideWrapper key={element} order={index} id={element} children={<NumberButtons/>}/>
           }
         }
       })}
