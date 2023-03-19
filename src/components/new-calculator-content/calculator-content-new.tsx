@@ -2,10 +2,10 @@ import React from "react";
 
 import CalculatorComponents from "../calculator-content/calculator-components";
 import DropArea from "../drop-area";
-import CalculatorConstructor from "../calculator-content/calculator-constructor";
+import CalculatorConstructor from "../calculator-content/calculator-constructor-to-delete";
 
 import {useAppSelector} from "../../hooks";
-import {useDrag} from '../../hooks/use-drag';
+import {useDragNDrop} from '../../hooks/use-drag-n-drop';
 
 import {getCalculatorDisplayMode} from "../../store/process/selectors";
 import {getCalculatorElements} from "../../store/canvas/selectors";
@@ -17,7 +17,7 @@ const CalculatorContentNew = () => {
   const calculatorDisplayMode = useAppSelector(getCalculatorDisplayMode);
   const calculatorElements = useAppSelector(getCalculatorElements);
 
-  const {onDragStart, onDragEnter, onDragLeave, onDragOver, onDrop, setElementId} = useDrag();
+  const {onDragStart, onDragEnter, onDragLeave, onDragOver, onDrop, setElementId} = useDragNDrop();
 
   const onDragStartHandler = (evt: React.DragEvent) => onDragStart(evt);
   const onDragEnterHandler = (evt: React.DragEvent) => onDragEnter(evt);

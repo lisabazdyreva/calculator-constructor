@@ -4,7 +4,7 @@ import './app.css';
 
 import Svg from "./components/svg";
 import Switcher from "./components/switcher";
-// import CalculatorContent from './components/calculator-content/calculator-content';
+// import CalculatorContentToDelete from './components/calculator-content/calculator-content';
 import CalculatorContentNew from "./components/new-calculator-content/calculator-content-new";
 
 const App = () => {

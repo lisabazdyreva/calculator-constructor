@@ -63,8 +63,8 @@ const CalculatorConstructor = () => {
           order={0}
           id={CalculatorElementsName.Display}
           children={<Display/>}
-          activeElement={activeElement}
-          setPositionElement={setPositionElement}
+          // activeElement={activeElement}
+          // setPositionElement={setPositionElement}
         />
       }
       {elementsToRender.includes(CalculatorElementsName.Operators) &&
@@ -72,8 +72,8 @@ const CalculatorConstructor = () => {
           order={elementsToRender.indexOf(CalculatorElementsName.Operators)}
           id={CalculatorElementsName.Operators}
           children={<OperatorButtons/>}
-          activeElement={activeElement}
-          setPositionElement={setPositionElement}
+          // activeElement={activeElement}
+          // setPositionElement={setPositionElement}
         />
       }
       {elementsToRender.includes(CalculatorElementsName.Numbers) &&
@@ -81,8 +81,8 @@ const CalculatorConstructor = () => {
           order={elementsToRender.indexOf(CalculatorElementsName.Numbers)}
           id={CalculatorElementsName.Numbers}
           children={<NumberButtons/>}
-          activeElement={activeElement}
-          setPositionElement={setPositionElement}
+          // activeElement={activeElement}
+          // setPositionElement={setPositionElement}
         />
       }
       {elementsToRender.includes(CalculatorElementsName.Equal) &&
@@ -90,8 +90,8 @@ const CalculatorConstructor = () => {
           order={elementsToRender.indexOf(CalculatorElementsName.Equal)}
           id={CalculatorElementsName.Equal}
           children={<EqualButton/>}
-          activeElement={activeElement}
-          setPositionElement={setPositionElement}
+          // activeElement={activeElement}
+          // setPositionElement={setPositionElement}
         />
       }
     </div>

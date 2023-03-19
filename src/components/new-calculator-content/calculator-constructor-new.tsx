@@ -1,10 +1,13 @@
-import {CalculatorElementsName} from "../../const";
+import React from "react";
+
 import DragInsideWrapper from "../calculator-elements-wrapper/drag-inside-wrapper";
 import Display from "../calculator-elements/display";
 import OperatorButtons from "../calculator-elements/operator-buttons";
 import NumberButtons from "../calculator-elements/number-buttons";
 import EqualButton from "../calculator-elements/equal-button";
-import React from "react";
+
+import {CalculatorElementsName} from "../../const";
+
 import {useAppSelector} from "../../hooks";
 import {getCalculatorElements} from "../../store/canvas/selectors";
 
@@ -29,35 +32,6 @@ const CalculatorConstructorNew = () => {
           }
         }
       })}
-      {/*{elementsToRender.includes(CalculatorElementsName.Display) &&*/}
-      {/*  <DragInsideWrapper*/}
-      {/*    order={0}*/}
-      {/*    id={CalculatorElementsName.Display}*/}
-      {/*    children={<Display/>}*/}
-      {/*  />*/}
-      {/*}*/}
-      {/*{elementsToRender.includes(CalculatorElementsName.Operators) &&*/}
-      {/*  <DragInsideWrapper*/}
-      {/*    order={elementsToRender.indexOf(CalculatorElementsName.Operators)}*/}
-      {/*    id={CalculatorElementsName.Operators}*/}
-      {/*    children={<OperatorButtons/>}*/}
-      {/*  />*/}
-      {/*}*/}
-      {/*{elementsToRender.includes(CalculatorElementsName.Numbers) &&*/}
-      {/*  <DragInsideWrapper*/}
-      {/*    order={elementsToRender.indexOf(CalculatorElementsName.Numbers)}*/}
-      {/*    id={CalculatorElementsName.Numbers}*/}
-      {/*    children={<NumberButtons/>}*/}
-
-      {/*  />*/}
-      {/*}*/}
-      {/*{elementsToRender.includes(CalculatorElementsName.Equal) &&*/}
-      {/*  <DragInsideWrapper*/}
-      {/*    order={elementsToRender.indexOf(CalculatorElementsName.Equal)}*/}
-      {/*    id={CalculatorElementsName.Equal}*/}
-      {/*    children={<EqualButton/>}*/}
-      {/*  />*/}
-      {/*}*/}
     </div>
   );
 };

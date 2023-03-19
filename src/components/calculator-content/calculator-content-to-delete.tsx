@@ -2,7 +2,7 @@ import React from 'react';
 
 import CalculatorComponents from './calculator-components';
 import DropArea from '../drop-area';
-import CalculatorConstructor from './calculator-constructor';
+import CalculatorConstructor from './calculator-constructor-to-delete';
 
 import {useAppDispatch, useAppSelector} from '../../hooks';
 
@@ -13,7 +13,7 @@ import {CalculatorElementsNameType} from "../../types/state";
 
 import {CalculatorMode} from "../../const";
 
-const CalculatorContent = () => {
+const CalculatorContentToDelete = () => {
   let idPreSet: CalculatorElementsNameType;
 
   const dispatch = useAppDispatch();
@@ -108,4 +108,4 @@ const CalculatorContent = () => {
   );
 };
 
-export default CalculatorContent;
+export default CalculatorContentToDelete;

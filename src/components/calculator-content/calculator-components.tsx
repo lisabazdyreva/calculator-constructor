@@ -32,14 +32,10 @@ const CalculatorComponents = ({setElementId}: CalculatorComponentsProps) => {
     <div className='calculator-components' onDragStart={onDragHandler}>
       {calculatorDisplayMode === CalculatorMode.Edit &&
         <>
-          <SimpleWrapper disabled={draggedElements.includes(CalculatorElementsName.Display)}
-                         id={CalculatorElementsName.Display} children={<Display/>}/>
-          <SimpleWrapper disabled={draggedElements.includes(CalculatorElementsName.Operators)}
-                         id={CalculatorElementsName.Operators} children={<OperatorButtons/>}/>
-          <SimpleWrapper disabled={draggedElements.includes(CalculatorElementsName.Numbers)}
-                         id={CalculatorElementsName.Numbers} children={<NumberButtons/>}/>
-          <SimpleWrapper disabled={draggedElements.includes(CalculatorElementsName.Equal)}
-                         id={CalculatorElementsName.Equal} children={<EqualButton/>}/>
+          <SimpleWrapper disabled={draggedElements.includes(CalculatorElementsName.Display)} id={CalculatorElementsName.Display} children={<Display/>}/>
+          <SimpleWrapper disabled={draggedElements.includes(CalculatorElementsName.Operators)} id={CalculatorElementsName.Operators} children={<OperatorButtons/>}/>
+          <SimpleWrapper disabled={draggedElements.includes(CalculatorElementsName.Numbers)} id={CalculatorElementsName.Numbers} children={<NumberButtons/>}/>
+          <SimpleWrapper disabled={draggedElements.includes(CalculatorElementsName.Equal)} id={CalculatorElementsName.Equal} children={<EqualButton/>}/>
         </>}
     </div>
   );
