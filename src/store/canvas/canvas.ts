@@ -12,10 +12,18 @@ export const canvas = createSlice({
   initialState: initialStateCanvas,
   reducers: {
     setElement: (state, action) => {
-      if (action.payload !== CalculatorElementsName.Display) {
-        state.elementsInCalculator.push(action.payload);
+
+      if (action.payload.element === CalculatorElementsName.Display) {
+        state.elementsInCalculator.unshift(action.payload.element);
+        return;
+      }
+
+      if (action.payload.place) {
+        const index = state.elementsInCalculator.indexOf(action.payload.place);
+        state.elementsInCalculator = [...state.elementsInCalculator.slice(0, index), action.payload.element, ...state.elementsInCalculator.slice(index)];
+        return;
       } else {
-        state.elementsInCalculator.unshift(action.payload);
+        state.elementsInCalculator.push(action.payload.element);
       }
     },
     removeElement: (state, action) => {
